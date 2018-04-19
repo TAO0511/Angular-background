@@ -1,0 +1,136 @@
+<div class="shop" *ngIf="pageType == 'list'">
+  <div class="form-search">
+    <form class="form-inline">
+      <div class="form-line">
+        <div class="form-group col-md-3">
+          <label>门店名称：</label>
+          <input type="text" class="form-control" placeholder="门店名称" [(ngModel)]="model.name" name="name">
+        </div>
+        <div class="form-group col-md-3">
+          <label>地址：</label>
+          <input type="text" class="form-control" placeholder="地址" [(ngModel)]="model.address" name="address">
+        </div>
+        <div class="form-group col-md-3">
+          <label>电话：</label>
+          <input type="text" class="form-control" placeholder="电话" [(ngModel)]="model.contactPhone" name="contactPhone">
+        </div>
+        <div class="form-group col-md-3">
+          <button type="submit" class="btn btn-primary" (click)="search()">搜索</button>
+          <button type="button" class="btn btn-default" (click)="clear()">清空</button>
+          <span>共搜索到{{page.DataCount || 0}}个结果</span>
+        </div>
+      </div>
+      <div></div>
+      <div class="form-line">
+        <div class="form-group col-md-3">
+          <label>商家类型：</label>
+          <select class="form-control" [(ngModel)]="model.userType" name="userType">
+            <option [value]=''></option>
+            <option *ngFor="let item of userTypes" [value]='item.value'>{{item.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>版本：</label>
+          <select class="form-control" [(ngModel)]="model.versionType" name="versionType">
+            <option [value]=''></option>
+            <option *ngFor="let item of versionTypes" [value]='item.value'>{{item.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>是否非床位为本：</label>
+          <select class="form-control" [(ngModel)]="model.isHideRoom" name="isHideRoom">
+            <option [value]=''></option>
+            <option [value]='0'>否</option>
+            <option [value]='1'>是</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="table-list">
+    <tabset>
+      <tab heading="商家列表" (select)="query()">
+        <div *ngIf="shops&&shops.length>0">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th width="200px">注册时间</th>
+              <th>商家名称</th>
+              <th>门店名称</th>
+              <th width="200px">联系人</th>
+              <th width="200px">老板电话</th>
+              <th>到期时间</th>
+              <th>注册区域</th>
+              <th>地址</th>
+              <th>状态</th>
+              <th>商家类型</th>
+              <th>版本</th>
+              <th width="160px">是否非床位为本</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let shop of shops">
+              <td>{{shop.CreatedAt |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td (click)="gotoDetail(shop)"><a href="javascript:;">{{shop.Code}}</a></td>
+              <td>{{shop.Name}}</td>
+              <td>{{shop.ContactMan}}</td>
+              <td>{{shop.Boss.phoneNo}}</td>
+              <td>{{shop.ExpireTime | date:'yyyy-MM-dd' }}</td>
+              <td>{{shop.BusinessScope | address}}</td>
+              <td>{{shop.Address | address}}</td>
+              <td>{{getStatus(shop.UsableStatus)}}</td>
+              <td>{{getType(shop.UserType)}}</td>
+              <td>{{getVersion(shop.VersionType)}}</td>
+              <td>{{getIsHideRoom(shop.IsHideRoom)}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <app-page [page]="page" (onPageChanged)="query()"></app-page>
+        </div>
+        <span *ngIf="!shops || shops.length==0">暂无数据</span>
+      </tab>
+      <tab heading="已删除商家列表" (select)="queryDelete()">
+        <div *ngIf="deleteShops&&deleteShops.length>0">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th width="200px">注册时间</th>
+              <th>商家名称</th>
+              <th>门店名称</th>
+              <th width="200px">联系人</th>
+              <th>联系电话</th>
+              <th>注册区域</th>
+              <th>地址</th>
+              <th>状态</th>
+              <th>商家类型</th>
+              <th>版本</th>
+              <th>是否非床位为本</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let shop of deleteShops">
+              <td>{{shop.CreatedAt |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td (click)="gotoDetail(shop)"><a href="javascript:;">{{shop.Code}}</a></td>
+              <td>{{shop.Name}}</td>
+              <td>{{shop.ContactMan}}</td>
+              <td>{{shop.ContactPhone}}</td>
+              <td>{{shop.BusinessScope |address}}</td>
+              <td>{{shop.Address |address}}</td>
+              <td>{{getStatus(shop.UsableStatus)}}</td>
+              <td>{{getType(shop.UserType)}}</td>
+              <td>{{getVersion(shop.VersionType)}}</td>
+              <td>{{getIsHideRoom(shop.IsHideRoom)}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <app-page [page]="deletePage" (onPageChanged)="queryDelete()"></app-page>
+        </div>
+        <span *ngIf="!deleteShops || deleteShops.length==0">暂无数据</span>
+      </tab>
+    </tabset>
+
+  </div>
+</div>
+<app-shop-detail *ngIf="pageType == 'detail'" [shop]="selectShop" (sureFn)="editSuccess()"
+                 (cancelFn)="gotoList()"></app-shop-detail>
+

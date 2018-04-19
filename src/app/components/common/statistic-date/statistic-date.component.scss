@@ -1,0 +1,13 @@
+.statistic-date{
+  .col-md-3{
+    width: auto;
+  }
+  .u-time{
+    padding: 0 12px 0 15px;
+    border-left: 1px solid #d6dadd;
+    cursor: pointer;
+  }
+  .u-time:first-child{
+    border-left: none;
+  }
+}

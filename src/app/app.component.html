@@ -1,0 +1,81 @@
+<!-- WRAPPER -->
+<div id="wrapper" *ngIf="isShowDashboard()">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="brand">
+      <a routerLink="/dashboard"><img src="assets/img/logo.png" class="img-responsive logo"></a>
+    </div>
+    <div class="container-fluid">
+
+      <div id="navbar-menu">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown" dropdown>
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" dropdownToggle>
+              <img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" *dropdownMenu>
+              <!--<li><a (click)="editPassword()"><i class="lnr lnr-cog"></i> <span>修改密码</span></a></li>-->
+              <li class="cursor"><a (click)="gotoLogin()"><i class="lnr lnr-exit"></i> <span>退出账号</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END NAVBAR -->
+  <!-- LEFT SIDEBAR -->
+  <div id="sidebar-nav" class="sidebar">
+    <div class="sidebar-scroll">
+      <nav>
+        <ul class="nav">
+          <!--<li><a routerLink="/dashboard" class="active"><i class="lnr lnr-home"></i> <span>控制台</span></a></li>-->
+          <!--<li><a routerLink="/template" class=""><i class="lnr lnr-code"></i> <span>菜单</span></a></li>-->
+          <!--<li><a routerLink="/user" class=""><i class="lnr lnr-chart-bars"></i> <span>商家/门店管理</span></a></li>-->
+          <!--<li><a routerLink="/dashboard" class=""><i class="lnr lnr-cog"></i> <span>数据</span></a></li>-->
+          <!--<li>-->
+          <!--<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>-->
+          <!--<span>运维</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>-->
+          <!--<div id="subPages" class="collapse ">-->
+          <!--<ul class="nav">-->
+          <!--<li><a href="page-profile.html" class="">Profile</a></li>-->
+          <!--<li><a href="page-login.html" class="">Login</a></li>-->
+          <!--<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>-->
+          <!--</ul>-->
+          <!--</div>-->
+          <!--</li>-->
+          <li *ngFor="let nav of navs">
+            <a data-toggle="collapse" [ngClass]="{'collapsed':!nav.active,'active':nav.checked}" (click)="selectNav(nav)"><i class="lnr {{nav.icon}}"></i> <span>{{nav.name}}</span><i
+              class="icon-submenu lnr lnr-chevron-left"></i></a>
+            <ul class="nav" *ngFor="let item of nav.children" [hidden]="!nav.active">
+              <li><a [ngClass]="{'active':item.checked}" (click)="selectItem(item,nav)">{{item.name}}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- END LEFT SIDEBAR -->
+  <!-- MAIN -->
+  <!-- MAIN -->
+  <div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <!-- END MAIN -->
+  <div class="clearfix"></div>
+</div>
+<ngx-spinner
+  bdOpacity=0.8
+  bdColor="#fffffff"
+  size="large"
+  color="#999999"
+  type="ball-clip-rotate-pulse"
+></ngx-spinner>
+<!-- END WRAPPER -->
+<app-login *ngIf="!isShowDashboard()" (success)="loginSuccess($event)"></app-login>
+
+

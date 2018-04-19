@@ -1,0 +1,97 @@
+<div class="shop-detail">
+  <header class="detail-btn">
+    <button class="btn btn-default" (click)="cancel()">取消</button>
+    <button class="btn btn-primary" (click)="sure()">保存</button>
+    <button class="btn btn-danger" (click)="delete()" *ngIf="!hideDelete">删除</button>
+  </header>
+  <div class="table-list">
+    <h3>商家信息</h3>
+    <table class="table table-hover">
+      <tbody>
+      <tr>
+        <th>商家名称：</th>
+        <td>{{shop.Code}}</td>
+        <th>门店名称：</th>
+        <td>{{shop.Name}}</td>
+        <th>联系人：</th>
+        <td>{{shop.ContactMan}}</td>
+      </tr>
+      <tr>
+        <th>联系电话：</th>
+        <td>{{shop.ContactPhone}}</td>
+        <th>注册区域：</th>
+        <td>{{shop.BusinessScope |address}}</td>
+        <th>地址：</th>
+        <td>{{shop.Address |address}}</td>
+      </tr>
+      <tr>
+        <th>系统注册时间：</th>
+        <td>{{shop.CreatedAt |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <th>系统到期时间：</th>
+        <td>{{shop.ContactPhone}}</td>
+        <th>当前状态：</th>
+        <td>{{getStatus(shop.UsableStatus)}}</td>
+      </tr>
+      <tr>
+        <th>商家类型：</th>
+        <td>
+          <select class="form-control w-input" [(ngModel)]="shop.UserType" name="userType">
+            <option *ngFor="let item of userTypes" [value]='item.value'>{{item.name}}</option>
+          </select>
+        </td>
+        <th>版本：</th>
+        <td>
+          <select class="form-control w-input" [(ngModel)]="shop.VersionType" name="versionType">
+            <option *ngFor="let item of versionTypes" [value]='item.value'>{{item.name}}</option>
+          </select>
+        </td>
+        <th>状态：</th>
+        <td>
+          <select class="form-control w-input" [(ngModel)]="shop.UsableStatus" name="usableStatus">
+            <option *ngFor="let item of usableStatusAll" [value]='item.value'>{{item.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>是否非床位为本：</th>
+        <td>
+          <select class="form-control w-input" [(ngModel)]="shop.IsHideRoom" name="isHideRoom">
+            <option [value]='0'>否</option>
+            <option [value]='1'>是</option>
+          </select>
+        </td>
+        <th></th>
+        <td>
+        </td>
+        <th></th>
+        <td>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-list">
+    <h3>操作日志记录</h3>
+    <table class="table table-hover" *ngIf="data?.logs && data?.logs.length>0">
+      <thead>
+      <tr>
+        <th>时间</th>
+        <th>操作/事件/动作</th>
+        <!--<th>影响</th>-->
+        <th>参与人</th>
+        <!--<th>备注</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let log of data.logs">
+        <td>{{log.CreatedAt |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{log.OperationResult}}</td>
+        <td>{{log.UserName}}</td>
+        <!--<td></td>-->
+        <!--<td></td>-->
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!data?.logs || data?.logs.length==0">暂无数据</div>
+  </div>
+</div>

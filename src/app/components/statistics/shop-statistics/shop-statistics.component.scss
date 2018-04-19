@@ -1,0 +1,84 @@
+$hexagon_width: 150px;
+.shop-statistics {
+  .col-metric {
+    width: 14%;
+    .metric {
+      color: #FFFF;
+      background: #00c0ef;
+      p {
+        text-align: center;
+      }
+    }
+    .bg-1{
+      background: #00c0ef;
+    }
+    .bg-2{
+      background: #00a65a;
+    }
+    .bg-3{
+      background: #f39c12;
+    }
+    .bg-4{
+      background: #dd4b39;
+    }
+    .bg-5{
+      background: #4ed2d2;
+    }
+    .bg-6{
+      background: #3c8dbc;
+    }
+    .bg-7{
+      background: #605ca8;
+    }
+  }
+
+
+  .sta-data{
+    .col-md-2{
+      text-align: center;
+    }
+    .active{
+      color: #00AAFF;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .f-big{
+    font-size: 28px;
+  }
+  .hexagon:before {
+    content: "";
+    position: absolute;
+    top: -($hexagon_width/4);
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: ($hexagon_width/2) solid transparent;
+    border-right: ($hexagon_width/2) solid transparent;
+    border-bottom: ($hexagon_width/4) solid #ececec;
+  }
+  .hexagon:after {
+    content: "";
+    position: absolute;
+    bottom: -($hexagon_width/4);
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: ($hexagon_width/2) solid transparent;
+    border-right: ($hexagon_width/2) solid transparent;
+    border-top: ($hexagon_width/4) solid #ececec;
+  }
+  .hexagon {
+    width: ($hexagon_width);
+    height: ($hexagon_width/2);
+    background: #ececec;
+    position: relative;
+  }
+  .hexagon {
+    p {
+      margin: 0;
+      height: ($hexagon_width/4);
+      line-height: ($hexagon_width/4);
+    }
+  }
+}

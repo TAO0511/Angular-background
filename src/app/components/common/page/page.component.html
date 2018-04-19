@@ -1,0 +1,15 @@
+<div class="page-wrap">
+  <div class="page-left form-inline">
+    <span>每页显示行数 </span>
+    <select class="form-control" [(ngModel)]="page.PageSize" (change)="pageSizeChanged()">
+      <option *ngFor="let line of lines" [value]="line">{{line}}</option>
+    </select>
+  </div>
+  <div class="page-right">
+    <pagination [totalItems]="page.DataCount" [(ngModel)]="page.PageNo" (pageChanged)="pageChanged($event)"
+                [previousText]="previousText" [nextText]="nextText" (numPages)="page.PageCount = $event"
+                [maxSize]="maxSize" [itemsPerPage]="page.PageSize" [boundaryLinks]="boundaryLinks" [firstText]="firstText" [lastText]="lastText"></pagination>
+    <span class="page-tip">当前第{{page.PageNo}}/{{page.PageCount}}页</span>
+  </div>
+</div>
+

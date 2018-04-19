@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+/**
+公共样式
+ */
+$blue:#00AAFF;
+.cursor{
+  cursor: pointer;
+}
+.icon{
+  cursor: pointer;
+}
+.icon:hover{
+  color: $blue;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th{
+  min-width: 100px;
+}
+.f-blue{
+  color:$blue ;
+}
+.table-list .table>tbody>tr>td{  word-wrap: break-word; word-break: break-word;}
+.word-break { word-wrap: break-word; word-break: break-all; }
+/**
+覆盖模板样式
+ */
+#wrapper .sidebar{
+  width: 200px;
+}
+#wrapper .main{
+  width: calc(100% - 200px);
+}
+.sidebar .nav > li > a,.sidebar .nav .nav{cursor: pointer;}
+/**
+公告导航条
+ */
+.navbar-default{
+  .brand{
+    padding: 20px 39px;
+  }
+}
+//.sidebar .nav > li > a:focus,.sidebar .nav > li > a:focus i{
+//  color: #AEB7C2;
+//  background-color: transparent;
+//  border-left-color:transparent;
+//}
+
+/**
+提示弹框
+ */
+.main-alert{
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  max-width: 300px;
+  margin: 0 auto;
+  z-index: 999999;
+}
+/**
+确认弹框
+ */
+.modal .modal-console{
+  width: 380px;
+  margin-top: 200px;
+}
+/**
+公用搜索、筛选
+ */
+.form-search{
+  margin-bottom: 20px;
+  .form-line{
+    margin-bottom: 10px;
+    overflow: auto;
+    line-height: 34px;
+    .form-group{
+      white-space: nowrap;
+      .form-control{
+        min-width: 180px;
+      }
+    }
+  }
+  label{
+    font-weight: normal;
+    margin-bottom: 0px;
+  }
+}
+/*详情头部按钮*/
+.detail-btn{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+/*loadding样式*/
+.black-overlay{
+  top: 40% !important;
+  left: 50% !important;;
+  width: 100px !important;;
+  height: 100px !important;;
+}

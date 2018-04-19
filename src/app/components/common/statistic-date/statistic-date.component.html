@@ -1,0 +1,44 @@
+<div class="statistic-date">
+  <div class="form-search">
+    <form class="form-inline">
+      <div class="form-line">
+        <div class="form-group col-md-3">
+          <span class="u-time f-borderno" (click)="timing(1)" [ngClass]="{'f-blue':options.bgRed === 1}">今日</span>
+          <span class="u-time" (click)="timing(6)" [ngClass]="{'f-blue':options.bgRed === 6}">昨日</span>
+          <span class="u-time" (click)="timing(8)" [ngClass]="{'f-blue':options.bgRed === 8}">本周</span>
+          <span class="u-time" (click)="timing(7)" [ngClass]="{'f-blue':options.bgRed === 7}">上周</span>
+          <span class="u-time" (click)="timing(2)" [ngClass]="{'f-blue':options.bgRed === 2}">本月</span>
+          <span class="u-time" (click)="timing(3)" [ngClass]="{'f-blue':options.bgRed === 3}">上月</span>
+          <span class="u-time" (click)="timing(4)" [ngClass]="{'f-blue':options.bgRed === 4}">最近三月</span>
+          <span (click)="timing(5)" class="u-time" [ngClass]="{'f-blue':options.bgRed === 5}">其他时间</span>
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text"
+                 class="form-control"
+                 #dp="bsDatepicker"
+                 bsDatepicker
+                 [bsConfig]="bsConfig"
+                 [(bsValue)]="options.startTime"
+                 (bsValueChange)="otherDate()"
+                 placeholder="开始时间">
+        </div>
+        <div class="form-group col-md-3">
+          <label>至</label>
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text"
+                 class="form-control"
+                 #dp="bsDatepicker"
+                 bsDatepicker
+                 [bsConfig]="bsConfig"
+                 [(bsValue)]="options.endTime"
+                 (bsValueChange)="otherDate()"
+                 placeholder="结束时间">
+        </div>
+        <div class="form-group col-md-3">
+          <button  class="btn btn-primary" type="submit" (click)="queryFn()">搜索</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

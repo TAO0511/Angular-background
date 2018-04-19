@@ -1,0 +1,72 @@
+<div class="shop-statistics" *ngIf="pageType == 'list'">
+  <div class="row">
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-1">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">商家总数</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-2">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">员工总数</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-3">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">总交易额</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-4">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">预约数</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-5">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">顾客会员</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-6">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">服务项目总数</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 col-metric">
+      <div class="metric bg-7">
+        <p>
+          <span class="number">1,252</span>
+          <span class="title">商品总数</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <app-statistic-date (query)="query($event)" [options]="options"></app-statistic-date>
+  <div class="row sta-data">
+    <div class="col-md-2" *ngFor="let item of datas;let i = index">
+      <div class="award-item">
+        <div class="hexagon">
+          <p class="f-big">{{item.value}}</p>
+          <p [ngClass]="{'active':i==0}" (click)="openPage(item.page)">{{item.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-shop-acitve (cancelFn)="gotoList()" *ngIf="pageType == 'shopActive'"></app-shop-acitve>
